@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edexcel IAL German — IAS Revision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#0c0f14;--bg2:#13161d;--bg3:#1a1e28;--bg4:#232833;
+--text:#e8e6e3;--text2:#a09b93;--text3:#6b6560;
+--accent:#4ade80;--accent2:#22c55e;--accent3:#16a34a;--accent-dim:rgba(74,222,128,.08);
+--gold:#f59e0b;--gold-dim:rgba(245,158,11,.1);
+--blue:#60a5fa;--blue-dim:rgba(96,165,250,.08);
+--red:#f87171;--red-dim:rgba(248,113,113,.08);
+--purple:#c084fc;--purple-dim:rgba(192,132,252,.08);
+--orange:#fb923c;--orange-dim:rgba(251,146,60,.1);
+--border:#2a2f3a;--border2:#363c4a;
+--radius:12px;--radius-sm:8px;--radius-xs:6px;
+--shadow:0 4px 24px rgba(0,0,0,.3);
+--font-display:'DM Serif Display',Georgia,serif;
+--font-body:'DM Sans',system-ui,sans-serif;
+--font-mono:'JetBrains Mono',monospace;
+--sidebar-w:280px;
+--nav-h:56px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;min-height:100vh}
+::selection{background:var(--accent);color:var(--bg)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* ── LAYOUT ── */
+.app{display:flex;min-height:100vh}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--sidebar-w);min-height:100vh;background:var(--bg2);border-right:1px solid var(--border);
+  position:fixed;top:0;left:0;z-index:100;
+  display:flex;flex-direction:column;
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.sidebar-header{padding:24px 20px 16px;border-bottom:1px solid var(--border)}
+.sidebar-header h1{font-family:var(--font-display);font-size:1.25rem;color:var(--accent);letter-spacing:-.02em}
+.sidebar-header p{font-size:.75rem;color:var(--text3);margin-top:4px;letter-spacing:.04em;text-transform:uppercase}
+.sidebar-nav{flex:1;overflow-y:auto;padding:12px 0}
+.nav-section{padding:4px 12px}
+.nav-section-title{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);padding:12px 8px 6px;font-weight:600}
+.nav-btn{
+  display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border:none;background:none;
+  color:var(--text2);font:500 .85rem var(--font-body);cursor:pointer;border-radius:var(--radius-xs);
+  transition:all .15s;text-align:left;
+}
+.nav-btn:hover{background:var(--bg3);color:var(--text)}
+.nav-btn.active{background:var(--accent-dim);color:var(--accent)}
+.nav-btn .icon{width:18px;text-align:center;font-size:.9rem;flex-shrink:0}
+.nav-btn .badge{margin-left:auto;font-size:.7rem;background:var(--bg4);color:var(--text3);padding:2px 7px;border-radius:10px}
+
+/* ── MAIN ── */
+.main{margin-left:var(--sidebar-w);flex:1;min-height:100vh}
+.topbar{
+  position:sticky;top:0;z-index:50;background:rgba(12,15,20,.85);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:0 32px;height:var(--nav-h);
+  display:flex;align-items:center;gap:16px;
+}
+.topbar-title{font-family:var(--font-display);font-size:1.1rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.search-box{
+  margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--bg3);
+  border:1px solid var(--border);border-radius:var(--radius-sm);padding:0 12px;height:36px;width:260px;
+  transition:border-color .2s;
+}
+.search-box:focus-within{border-color:var(--accent)}
+.search-box input{background:none;border:none;color:var(--text);font:400 .85rem var(--font-body);width:100%;outline:none}
+.search-box input::placeholder{color:var(--text3)}
+.search-icon{color:var(--text3);font-size:.85rem}
+.menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.3rem;cursor:pointer;padding:4px}
+
+.content{max-width:900px;margin:0 auto;padding:32px 32px 80px}
+
+/* ── SECTIONS ── */
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ── CARDS ── */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.card-header h2{font-family:var(--font-display);font-size:1.35rem;color:var(--text)}
+.card-header .tag{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:4px}
+.tag-blue{background:var(--blue-dim);color:var(--blue)}
+.tag-green{background:var(--accent-dim);color:var(--accent)}
+.tag-purple{background:var(--purple-dim);color:var(--purple)}
+.tag-orange{background:var(--orange-dim);color:var(--orange)}
+.tag-red{background:var(--red-dim);color:var(--red)}
+.tag-gold{background:var(--gold-dim);color:var(--gold)}
+
+.card h3{font-family:var(--font-display);font-size:1.1rem;color:var(--text);margin:20px 0 12px}
+.card p,.card li{color:var(--text2);font-size:.9rem;line-height:1.7}
+.card ul{list-style:none;padding:0}
+.card li{padding:4px 0 4px 20px;position:relative}
+.card li::before{content:'›';position:absolute;left:4px;color:var(--accent);font-weight:700}
+
+/* ── TIP BOX ── */
+.tip{background:var(--gold-dim);border-left:3px solid var(--gold);border-radius:0 var(--radius-xs) var(--radius-xs) 0;padding:14px 18px;margin:16px 0;font-size:.88rem;color:var(--text2)}
+.tip strong{color:var(--gold)}
+
+/* ── GRAMMAR BOX ── */
+.grammar-box{background:var(--purple-dim);border:1px solid rgba(192,132,252,.15);border-radius:var(--radius-sm);margin:12px 0;overflow:hidden}
+.grammar-box summary{
+  padding:14px 18px;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--purple);
+  list-style:none;display:flex;align-items:center;gap:8px;transition:background .15s;
+}
+.grammar-box summary:hover{background:rgba(192,132,252,.06)}
+.grammar-box summary::before{content:'▸';transition:transform .2s}
+.grammar-box[open] summary::before{transform:rotate(90deg)}
+.grammar-box .grammar-content{padding:0 18px 16px;font-size:.88rem;line-height:1.8;color:var(--text2)}
+.grammar-box code{font-family:var(--font-mono);background:var(--bg3);padding:2px 6px;border-radius:4px;font-size:.82rem;color:var(--accent)}
+
+/* ── VOCAB TABLE ── */
+.vocab-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)}
+.vocab-table th{background:var(--bg4);color:var(--text);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;text-align:left;font-weight:600}
+.vocab-table td{padding:10px 14px;font-size:.88rem;color:var(--text2);border-top:1px solid var(--border)}
+.vocab-table tr:nth-child(even) td{background:var(--bg3)}
+.vocab-table tr:hover td{background:var(--accent-dim);color:var(--text)}
+.vocab-table td:first-child{font-weight:500;color:var(--text);font-family:var(--font-body)}
+
+/* ── FLASHCARDS ── */
+.flashcard-controls{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.flashcard-controls select,.flashcard-controls button{
+  font:500 .85rem var(--font-body);padding:8px 16px;border-radius:var(--radius-xs);cursor:pointer;
+  transition:all .15s;
+}
+.flashcard-controls select{background:var(--bg3);border:1px solid var(--border);color:var(--text);appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a09b93' viewBox='0 0 16 16'%3E%3Cpath d='M8 12L2 6h12z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;padding-right:30px;
+}
+.fc-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text)}
+.fc-btn:hover{background:var(--bg4);border-color:var(--border2)}
+.fc-btn-accent{background:var(--accent);border:none;color:var(--bg);font-weight:600}
+.fc-btn-accent:hover{background:var(--accent2)}
+.fc-progress{margin-left:auto;font-size:.8rem;color:var(--text3)}
+
+.flashcard-container{perspective:1000px;height:280px;margin-bottom:20px;cursor:pointer}
+.flashcard{
+  width:100%;height:100%;position:relative;transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);border-radius:var(--radius);
+}
+.flashcard.flipped{transform:rotateY(180deg)}
+.flashcard-face{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;
+  border:1px solid var(--border);
+}
+.flashcard-front{background:linear-gradient(135deg,var(--bg2),var(--bg3))}
+.flashcard-back{background:linear-gradient(135deg,var(--accent-dim),var(--bg2));transform:rotateY(180deg);border-color:rgba(74,222,128,.2)}
+.flashcard-face .fc-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:12px}
+.flashcard-face .fc-word{font-family:var(--font-display);font-size:1.6rem;color:var(--text);text-align:center;line-height:1.4}
+.flashcard-back .fc-word{color:var(--accent)}
+.flashcard-face .fc-hint{font-size:.82rem;color:var(--text3);margin-top:16px}
+.flashcard-nav{display:flex;gap:12px;justify-content:center}
+.flashcard-nav button{
+  padding:10px 28px;border-radius:var(--radius-sm);font:600 .9rem var(--font-body);cursor:pointer;
+  transition:all .15s;border:1px solid var(--border);
+}
+.btn-prev{background:var(--bg3);color:var(--text)}
+.btn-prev:hover{background:var(--bg4)}
+.btn-know{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn-know:hover{background:var(--accent2)}
+.btn-dunno{background:var(--red-dim);border-color:rgba(248,113,113,.2);color:var(--red)}
+.btn-dunno:hover{background:rgba(248,113,113,.15)}
+
+/* ── QUIZ ── */
+.quiz-option{
+  display:block;width:100%;text-align:left;padding:14px 18px;margin:8px 0;
+  background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);
+  color:var(--text);font:400 .9rem var(--font-body);cursor:pointer;transition:all .15s;
+}
+.quiz-option:hover:not(.disabled){background:var(--bg4);border-color:var(--border2)}
+.quiz-option.correct{background:var(--accent-dim);border-color:var(--accent);color:var(--accent)}
+.quiz-option.wrong{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.quiz-option.disabled{cursor:default;opacity:.7}
+.quiz-score{font-size:1.1rem;font-weight:600;color:var(--accent);margin:16px 0}
+.quiz-q{font-family:var(--font-display);font-size:1.2rem;margin-bottom:16px;color:var(--text)}
+
+/* ── PHRASE BLOCKS ── */
+.phrase-block{margin:12px 0}
+.phrase-item{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:12px 16px;
+  border-left:3px solid var(--accent);margin:6px 0;background:var(--bg3);border-radius:0 var(--radius-xs) var(--radius-xs) 0;
+  font-size:.88rem;transition:background .15s;
+}
+.phrase-item:hover{background:var(--bg4)}
+.phrase-de{color:var(--text);font-weight:500}
+.phrase-en{color:var(--text3);font-style:italic}
+
+/* ── ERROR BOX ── */
+.error-box{border-radius:var(--radius-sm);overflow:hidden;margin:10px 0;border:1px solid rgba(248,113,113,.15)}
+.error-header{background:rgba(248,113,113,.12);padding:10px 16px;font-weight:600;font-size:.88rem;color:var(--red)}
+.error-body{padding:14px 16px;font-size:.86rem;background:var(--bg3)}
+.error-wrong{color:var(--red);margin-bottom:4px}
+.error-right{color:var(--accent);margin-bottom:4px}
+.error-why{color:var(--text3);font-style:italic;font-size:.82rem}
+
+/* ── STATS BAR ── */
+.stats-bar{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;flex:1;min-width:120px}
+.stat-value{font-family:var(--font-display);font-size:1.8rem;color:var(--accent)}
+.stat-label{font-size:.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:none}
+  .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90}
+  .sidebar-overlay.show{display:block}
+  .main{margin-left:0}
+  .menu-toggle{display:block}
+  .search-box{width:180px}
+  .content{padding:20px 16px 60px}
+  .flashcard-container{height:220px}
+  .phrase-item{grid-template-columns:1fr;gap:4px}
+  .stats-bar{gap:8px}
+  .stat{min-width:90px;padding:12px 14px}
+  .topbar{padding:0 16px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h1>🇩🇪 German IAS</h1>
+      <p>Edexcel IAL Revision</p>
+    </div>
+    <nav class="sidebar-nav" id="sidebarNav"></nav>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title" id="topbarTitle">Exam Overview</div>
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search vocab or phrases..." oninput="handleSearch(this.value)">
+      </div>
+    </div>
+    <div class="content" id="content"></div>
+  </main>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+
+const VOCAB = {
+  "Signpost Words": [
+    ["erstens / zuerst / zunächst","firstly / first of all / initially"],
+    ["zweitens / dann / danach","secondly / then / after that"],
+    ["außerdem / darüber hinaus","furthermore / beyond that"],
+    ["im Gegensatz dazu / andererseits","in contrast / on the other hand"],
+    ["trotzdem / dennoch / nichtsdestotrotz","nevertheless / nonetheless"],
+    ["zum Beispiel / beispielsweise","for example"],
+    ["schließlich / zum Schluss / abschließend","finally / in conclusion"],
+    ["zusammenfassend / insgesamt","in summary / overall"],
+    ["es geht um / es handelt sich um","it is about / it concerns"],
+    ["meiner Meinung nach / ich bin der Meinung","in my opinion"]
+  ],
+  "Family & Friendships": [
+    ["die Beziehung (-en)","relationship"],
+    ["das Vertrauen","trust"],
+    ["sich verstehen (mit)","to get along (with)"],
+    ["sich streiten (um/über)","to argue (about)"],
+    ["die Scheidung (-en)","divorce"],
+    ["die Patchworkfamilie (-n)","blended family"],
+    ["alleinerziehend","single parent"],
+    ["die Geschwisterrivalität","sibling rivalry"],
+    ["zusammenhalten","to stick together"],
+    ["unterstützen","to support"],
+    ["die Geborgenheit","security / sense of belonging"],
+    ["sich aufeinander verlassen","to rely on each other"]
+  ],
+  "Peer Pressure & Role Models": [
+    ["der Gruppenzwang","peer pressure"],
+    ["das Vorbild (-er)","role model"],
+    ["der Einfluss","influence"],
+    ["unter Druck setzen","to put under pressure"],
+    ["sich anpassen","to conform / adapt"],
+    ["die Erwartung (-en)","expectation"],
+    ["die Selbstständigkeit","independence"],
+    ["reifen / erwachsen werden","to mature / grow up"],
+    ["das Selbstbewusstsein","self-confidence"],
+    ["die Identität","identity"]
+  ],
+  "Music & Fashion": [
+    ["der Geschmack","taste"],
+    ["die Markenkleidung","branded clothing"],
+    ["sich ausdrücken","to express oneself"],
+    ["die Individualität","individuality"],
+    ["beeinflussen","to influence"],
+    ["der Mainstream","mainstream"],
+    ["die Konsumgesellschaft","consumer society"],
+    ["modebewusst","fashion-conscious"]
+  ],
+  "Technology & Communication": [
+    ["die sozialen Medien","social media"],
+    ["das soziale Netzwerk (-e)","social network"],
+    ["der Datenschutz","data protection"],
+    ["süchtig (nach)","addicted (to)"],
+    ["die Internetsucht","internet addiction"],
+    ["das Cybermobbing","cyberbullying"],
+    ["die Künstliche Intelligenz (KI)","artificial intelligence (AI)"],
+    ["der Bildschirm (-e)","screen"],
+    ["herunterladen","to download"],
+    ["in Kontakt bleiben","to stay in contact"],
+    ["die Abhängigkeit","dependency"],
+    ["die Privatsphäre","privacy"]
+  ],
+  "Food & Diet": [
+    ["die Ernährung","nutrition / diet"],
+    ["sich ernähren (von)","to eat / nourish oneself (with)"],
+    ["die ausgewogene Ernährung","balanced diet"],
+    ["das Fertiggericht (-e)","ready meal"],
+    ["der Vegetarier / Veganer","vegetarian / vegan"],
+    ["die Essstörung (-en)","eating disorder"],
+    ["Übergewicht / Fettleibigkeit","overweight / obesity"],
+    ["zunehmen / abnehmen","to gain / lose weight"],
+    ["die Nährstoffe (pl.)","nutrients"],
+    ["Bio- / ökologisch","organic"],
+    ["die Lebensmittelverschwendung","food waste"]
+  ],
+  "Sport & Exercise": [
+    ["sich fit halten","to keep fit"],
+    ["Sport treiben","to do sport"],
+    ["das Fitnessstudio (-s)","gym"],
+    ["die Mannschaftssportart (-en)","team sport"],
+    ["der Leistungsdruck","performance pressure"],
+    ["der Wettkampf","competition"],
+    ["trainieren / üben","to train / practise"],
+    ["die Ausdauer","stamina / endurance"],
+    ["Stress abbauen","to reduce stress"]
+  ],
+  "Health Issues": [
+    ["die Gesundheit","health"],
+    ["die Krankheit (-en)","illness"],
+    ["die psychische Gesundheit","mental health"],
+    ["die Depression (-en)","depression"],
+    ["rauchen / das Rauchen","to smoke / smoking"],
+    ["der Alkoholmissbrauch","alcohol abuse"],
+    ["die Drogensucht","drug addiction"],
+    ["das Wohlbefinden","wellbeing"],
+    ["die Vorbeugung","prevention"],
+    ["das Gesundheitssystem (-e)","healthcare system"],
+    ["die Impfung (-en)","vaccination"]
+  ],
+  "Urban & Rural Life": [
+    ["die Großstadt","city"],
+    ["das Dorf / das Land","village / countryside"],
+    ["die Lebensqualität","quality of life"],
+    ["die Infrastruktur","infrastructure"],
+    ["die öffentlichen Verkehrsmittel","public transport"],
+    ["die Abwanderung / Landflucht","rural exodus"],
+    ["die Wohnungsnot","housing shortage"],
+    ["der Pendler (-)","commuter"],
+    ["die Luftverschmutzung","air pollution"]
+  ],
+  "Tourism & Transport": [
+    ["die Sehenswürdigkeit (-en)","sight / attraction"],
+    ["der Massentourismus","mass tourism"],
+    ["der nachhaltige Tourismus","sustainable tourism"],
+    ["die Unterkunft","accommodation"],
+    ["die Pauschalreise (-n)","package holiday"],
+    ["der CO₂-Fußabdruck","carbon footprint"],
+    ["die Fernreise (-n)","long-distance travel"],
+    ["der öffentliche Nahverkehr","local public transport"],
+    ["umweltfreundlich / umweltschädlich","eco-friendly / harmful"]
+  ],
+  "Natural Disasters & Weather": [
+    ["die Naturkatastrophe (-n)","natural disaster"],
+    ["das Erdbeben (-)","earthquake"],
+    ["die Überschwemmung (-en)","flood"],
+    ["der Hurrikan / der Sturm","hurricane / storm"],
+    ["die Dürre (-n)","drought"],
+    ["der Waldbrand","forest fire"],
+    ["die Hitzewelle (-n)","heatwave"],
+    ["heftig / verwüstend","severe / devastating"],
+    ["die Hilfsmaßnahme (-n)","relief measure"]
+  ],
+  "Climate Change": [
+    ["der Klimawandel","climate change"],
+    ["die Erderwärmung","global warming"],
+    ["der Treibhauseffekt","greenhouse effect"],
+    ["die Treibhausgase (pl.)","greenhouse gases"],
+    ["der Meeresspiegel","sea level"],
+    ["das Artensterben","species extinction"],
+    ["die Abholzung","deforestation"],
+    ["die Emissionen (pl.)","emissions"],
+    ["klimaneutral","climate neutral"]
+  ],
+  "Energy & Recycling": [
+    ["die erneuerbare Energie","renewable energy"],
+    ["die Solarenergie / Windenergie","solar / wind energy"],
+    ["die fossilen Brennstoffe","fossil fuels"],
+    ["der Atomausstieg","nuclear phase-out"],
+    ["die Verschmutzung","pollution"],
+    ["der Abfall / der Müll","waste / rubbish"],
+    ["die Mülltrennung","waste separation"],
+    ["wiederverwerten / recyceln","to recycle"],
+    ["die Nachhaltigkeit","sustainability"],
+    ["die Energiewende","energy transition"]
+  ],
+  "Education Systems": [
+    ["das Bildungssystem (-e)","education system"],
+    ["die Grundschule (-n)","primary school"],
+    ["das Gymnasium","grammar school (academic)"],
+    ["die Realschule (-n)","secondary school (vocational)"],
+    ["die Gesamtschule (-n)","comprehensive school"],
+    ["das Abitur","A-levels equivalent"],
+    ["die Lehre / Ausbildung","apprenticeship / training"],
+    ["der Lehrplan","curriculum"],
+    ["das duale System","dual system (work + study)"]
+  ],
+  "Student Life": [
+    ["der Leistungsdruck","academic pressure"],
+    ["die Prüfung / die Klausur","exam"],
+    ["die Note (-n)","grade"],
+    ["durchfallen / bestehen","to fail / to pass"],
+    ["das Studium","university studies"],
+    ["die Studiengebühren (pl.)","tuition fees"],
+    ["das BAföG","student financial aid (Germany)"],
+    ["der Stundenplan","timetable"],
+    ["das Pflichtfach / Wahlfach","compulsory / elective subject"]
+  ],
+  "Volunteering & Internships": [
+    ["das Praktikum (Praktika)","internship"],
+    ["der Freiwilligendienst","voluntary service"],
+    ["das Ehrenamt","voluntary position"],
+    ["sich engagieren (für)","to get involved (in)"],
+    ["einen Beitrag leisten","to make a contribution"],
+    ["die Berufserfahrung","work experience"],
+    ["das soziale Jahr","social year"]
+  ],
+  "Jobs & Unemployment": [
+    ["die Arbeitslosigkeit","unemployment"],
+    ["die Jugendarbeitslosigkeit","youth unemployment"],
+    ["der Arbeitsmarkt","job market"],
+    ["die Bewerbung (-en)","application"],
+    ["das Vorstellungsgespräch (-e)","job interview"],
+    ["der Lebenslauf","CV"],
+    ["die Teilzeitarbeit / Vollzeitarbeit","part-time / full-time work"],
+    ["der Mindestlohn","minimum wage"],
+    ["die Work-Life-Balance","work-life balance"],
+    ["die Gleichberechtigung","equal rights"]
+  ]
+};
+
+const PHRASES = {
+  "Opinions": [
+    ["Ich denke/glaube/meine, dass...","I think/believe that..."],
+    ["Meiner Meinung nach...","In my opinion... (+ inversion)"],
+    ["Ich bin der Meinung/Ansicht, dass...","I am of the opinion/view that..."],
+    ["Ich bin fest davon überzeugt, dass...","I am firmly convinced that..."],
+    ["Es steht außer Frage, dass...","There is no question that..."],
+    ["Es lässt sich nicht leugnen, dass...","It cannot be denied that..."],
+    ["Aus meiner Sicht / Perspektive...","From my point of view / perspective..."],
+    ["Es liegt auf der Hand, dass...","It is obvious that..."],
+    ["Man könnte argumentieren, dass...","One could argue that..."]
+  ],
+  "Linking & Structuring": [
+    ["Erstens... Zweitens... Drittens...","Firstly... Secondly... Thirdly..."],
+    ["Einerseits... Andererseits...","On the one hand... On the other hand..."],
+    ["Darüber hinaus / Außerdem / Zusätzlich","Furthermore / Moreover / Additionally"],
+    ["Im Gegensatz dazu / Im Vergleich zu (+Dat)","In contrast / Compared to"],
+    ["Trotzdem / Dennoch / Nichtsdestotrotz","Nevertheless / Nonetheless"],
+    ["Infolgedessen / Folglich / Daher","As a result / Consequently / Therefore"],
+    ["Was...betrifft / Was...angeht","As far as... is concerned"],
+    ["Zusammenfassend lässt sich sagen, dass...","In summary, it can be said that..."],
+    ["Abschließend möchte ich betonen, dass...","In conclusion, I would like to emphasise that..."],
+    ["Es ist erwähnenswert, dass...","It is worth mentioning that..."]
+  ],
+  "Cause & Effect": [
+    ["Das liegt daran, dass...","That is because..."],
+    ["Der Grund dafür ist, dass...","The reason for this is that..."],
+    ["Das führt dazu, dass...","That leads to..."],
+    ["Das hat zur Folge, dass...","The consequence of this is that..."],
+    ["Aufgrund (+Gen) / Wegen (+Gen)","Due to / Because of"],
+    ["Je mehr... desto/umso besser...","The more... the better..."]
+  ],
+  "Complex Structures": [
+    ["Obwohl die Regierung viel investiert hat, bleibt das Problem bestehen.","Although the government has invested a lot, the problem persists."],
+    ["Es wäre besser, wenn man mehr in erneuerbare Energien investieren würde.","It would be better if one invested more in renewable energy."],
+    ["Wenn ich die Möglichkeit hätte, würde ich ein Jahr im Ausland verbringen.","If I had the opportunity, I would spend a year abroad."],
+    ["Nicht nur die Umwelt, sondern auch die Wirtschaft wird davon profitieren.","Not only the environment, but also the economy will benefit."],
+    ["Anstatt Fast Food zu essen, sollte man frisches Gemüse kochen.","Instead of eating fast food, one should cook fresh vegetables."],
+    ["Nachdem die Studie veröffentlicht worden war, änderte sich die Politik.","After the study had been published, the policy changed."]
+  ],
+  "Email Conventions": [
+    ["Sehr geehrte Damen und Herren,","Dear Sir/Madam (formal)"],
+    ["Liebe/r [Name],","Dear [Name] (informal)"],
+    ["Ich schreibe Ihnen, weil...","I am writing to you because..."],
+    ["Ich wäre Ihnen dankbar, wenn...","I would be grateful if..."],
+    ["Könnten Sie mir bitte mitteilen, ob...","Could you please let me know whether..."],
+    ["Mit freundlichen Grüßen","Yours sincerely (formal)"],
+    ["Viele Grüße / Liebe Grüße","Best wishes / Love (informal)"]
+  ],
+  "Article Conventions": [
+    ["Heutzutage ist es klar, dass...","Nowadays it is clear that..."],
+    ["In den letzten Jahren hat sich... verändert.","In recent years... has changed."],
+    ["Laut einer kürzlichen Studie...","According to a recent study..."],
+    ["Was kann man dagegen tun?","What can be done about it?"],
+    ["Die Lösung liegt darin, dass...","The solution lies in the fact that..."]
+  ],
+  "Model: Youth": [
+    ["Die sozialen Medien spielen eine immer größere Rolle im Leben der Jugendlichen.","Social media plays an ever greater role in young people's lives."],
+    ["Es ist nicht zu leugnen, dass Cybermobbing schwerwiegende Folgen für die psychische Gesundheit haben kann.","Cyberbullying can have serious consequences for mental health."],
+    ["Obwohl die Technologie viele Vorteile bietet, führt sie auch zu einer zunehmenden Abhängigkeit.","Although technology offers many advantages, it also leads to increasing dependency."],
+    ["Viele Jugendliche stehen unter enormem Druck, sich den Erwartungen anzupassen.","Many young people are under enormous pressure to conform to expectations."],
+    ["Wahre Freundschaft basiert auf gegenseitigem Vertrauen und Respekt.","True friendship is based on mutual trust and respect."]
+  ],
+  "Model: Health": [
+    ["Eine ausgewogene Ernährung ist die Grundlage für ein gesundes Leben.","A balanced diet is the foundation for a healthy life."],
+    ["Wenn mehr Menschen regelmäßig Sport treiben würden, könnten viele Krankheiten vermieden werden.","If more people exercised regularly, many illnesses could be avoided."],
+    ["Das Problem der Fettleibigkeit betrifft nicht nur Erwachsene, sondern auch immer mehr Kinder.","The problem of obesity affects not only adults but also more and more children."],
+    ["Die Lebensqualität in Städten wird durch Lärm und Luftverschmutzung beeinträchtigt.","Quality of life in cities is affected by noise and air pollution."]
+  ],
+  "Model: Environment": [
+    ["Der Klimawandel stellt eine der größten Herausforderungen unserer Zeit dar.","Climate change represents one of the greatest challenges of our time."],
+    ["Infolgedessen müssen erneuerbare Energien stärker gefördert werden.","Renewable energies must be promoted more strongly."],
+    ["Je mehr wir fliegen, desto größer wird unser CO₂-Fußabdruck.","The more we fly, the bigger our carbon footprint becomes."],
+    ["Es wäre wünschenswert, wenn jeder Einzelne seinen Beitrag zum Umweltschutz leisten würde.","It would be desirable if every individual contributed to environmental protection."],
+    ["Anstatt mit dem Flugzeug zu reisen, sollte man öfter den Zug nehmen.","Instead of flying, one should take the train more often."]
+  ],
+  "Model: Education": [
+    ["Das deutsche Bildungssystem bietet vielfältige Bildungswege.","The German education system offers diverse educational paths."],
+    ["Die Jugendarbeitslosigkeit bleibt ein drängendes Problem.","Youth unemployment remains a pressing problem."],
+    ["Durch ein Praktikum könnte man wertvolle Berufserfahrung sammeln.","Through an internship, one could gain valuable work experience."],
+    ["Nachdem ich mein Abitur bestanden habe, möchte ich im Ausland studieren.","After passing my A-levels, I would like to study abroad."],
+    ["Die Frage, ob Studiengebühren gerecht sind, wird heftig diskutiert.","Whether tuition fees are fair is hotly debated."]
+  ]
+};
+
+const GRAMMAR_ERRORS = [
+  {title:"Wrong case after preposition", wrong:"mit mein Freund ✘", right:"mit meinem Freund ✔", why:"mit takes Dativ"},
+  {title:"Wrong verb position in subordinate clause", wrong:"weil ich habe keine Zeit ✘", right:"weil ich keine Zeit habe ✔", why:"Verb to end after weil"},
+  {title:"Missing inversion after adverb", wrong:"Gestern ich bin gegangen ✘", right:"Gestern bin ich gegangen ✔", why:"V2 rule: verb stays in position 2"},
+  {title:"Wrong auxiliary in Perfekt", wrong:"Ich habe nach Berlin gefahren ✘", right:"Ich bin nach Berlin gefahren ✔", why:"Movement verbs use sein"},
+  {title:"Adjective ending errors", wrong:"ein guter Buch ✘", right:"ein gutes Buch ✔", why:"Buch is neuter → gutes"},
+  {title:"sein vs. seine", wrong:"Er mag sein Schwester ✘", right:"Er mag seine Schwester ✔", why:"seine = fem. acc. possessive"},
+  {title:"dar- compound missing", wrong:"Ich freue mich auf es ✘", right:"Ich freue mich darauf ✔", why:"Use dar- for things"},
+  {title:"wenn vs. als", wrong:"Als ich jung bin ✘", right:"Als ich jung war ✔", why:"als = past single event, wenn = present/future"},
+];
+
+const IRREGULAR_VERBS = [
+  ["sein","ist","war","ist gewesen","wäre"],
+  ["haben","hat","hatte","hat gehabt","hätte"],
+  ["werden","wird","wurde","ist geworden","würde"],
+  ["gehen","geht","ging","ist gegangen","ginge"],
+  ["kommen","kommt","kam","ist gekommen","käme"],
+  ["geben","gibt","gab","hat gegeben","gäbe"],
+  ["nehmen","nimmt","nahm","hat genommen","nähme"],
+  ["fahren","fährt","fuhr","ist gefahren","führe"],
+  ["lesen","liest","las","hat gelesen","–"],
+  ["sprechen","spricht","sprach","hat gesprochen","spräche"],
+  ["sehen","sieht","sah","hat gesehen","sähe"],
+  ["wissen","weiß","wusste","hat gewusst","wüsste"],
+  ["denken","denkt","dachte","hat gedacht","dächte"],
+  ["bringen","bringt","brachte","hat gebracht","brächte"],
+  ["stehen","steht","stand","hat gestanden","stände"],
+  ["finden","findet","fand","hat gefunden","fände"],
+  ["lassen","lässt","ließ","hat gelassen","ließe"],
+  ["tun","tut","tat","hat getan","täte"],
+  ["halten","hält","hielt","hat gehalten","hielte"],
+  ["bleiben","bleibt","blieb","ist geblieben","bliebe"],
+];
+
+// ═══════════════════════════════════════════════
+// NAV CONFIG
+// ═══════════════════════════════════════════════
+
+const NAV = [
+  { group: "Exam", items: [
+    { id:"overview", label:"Exam Overview", icon:"📋" },
+    { id:"listening", label:"Listening Strategy", icon:"🎧" },
+    { id:"reading", label:"Reading & Grammar", icon:"📖" },
+    { id:"writing", label:"Writing Guide", icon:"✍️" },
+  ]},
+  { group: "Vocabulary", items: [
+    { id:"flashcards", label:"Flashcards", icon:"🃏" },
+    { id:"vocab-youth", label:"GTA 1: Youth", icon:"👥" },
+    { id:"vocab-health", label:"GTA 2: Health", icon:"💪" },
+    { id:"vocab-environment", label:"GTA 3: Environment", icon:"🌍" },
+    { id:"vocab-education", label:"GTA 4: Education", icon:"🎓" },
+  ]},
+  { group: "Language", items: [
+    { id:"phrases", label:"High-Scoring Phrases", icon:"⭐" },
+    { id:"models", label:"Model Sentences", icon:"📝" },
+    { id:"grammar-ref", label:"Grammar Reference", icon:"📐" },
+    { id:"errors", label:"Common Errors", icon:"⚠️" },
+    { id:"verbs", label:"Irregular Verbs", icon:"🔄" },
+  ]},
+  { group: "Practice", items: [
+    { id:"quiz", label:"Vocab Quiz", icon:"🧪" },
+    { id:"checklist", label:"Pre-Exam Checklist", icon:"✅" },
+  ]},
+];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let currentSection = 'overview';
+let fcCategory = Object.keys(VOCAB)[0];
+let fcIndex = 0;
+let fcFlipped = false;
+let fcKnown = new Set();
+let quizQuestions = [];
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+// ═══════════════════════════════════════════════
+// BUILD SIDEBAR
+// ═══════════════════════════════════════════════
+function buildSidebar() {
+  const nav = document.getElementById('sidebarNav');
+  nav.innerHTML = NAV.map(g => `
+    <div class="nav-section">
+      <div class="nav-section-title">${g.group}</div>
+      ${g.items.map(i => `<button class="nav-btn${i.id===currentSection?' active':''}" onclick="navigateTo('${i.id}')">
+        <span class="icon">${i.icon}</span>${i.label}
+      </button>`).join('')}
+    </div>
+  `).join('');
+}
+
+function navigateTo(id) {
+  currentSection = id;
+  buildSidebar();
+  renderSection();
+  document.getElementById('topbarTitle').textContent = NAV.flatMap(g=>g.items).find(i=>i.id===id)?.label || '';
+  if(window.innerWidth<768) toggleSidebar();
+  window.scrollTo(0,0);
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+// ═══════════════════════════════════════════════
+// RENDERERS
+// ═══════════════════════════════════════════════
+
+function vocabTableHTML(items) {
+  return `<table class="vocab-table"><thead><tr><th>Deutsch</th><th>English</th></tr></thead><tbody>${items.map(([d,e])=>`<tr><td>${d}</td><td>${e}</td></tr>`).join('')}</tbody></table>`;
+}
+
+function phraseBlockHTML(items) {
+  return `<div class="phrase-block">${items.map(([d,e])=>`<div class="phrase-item"><span class="phrase-de">${d}</span><span class="phrase-en">${e}</span></div>`).join('')}</div>`;
+}
+
+function renderSection() {
+  const c = document.getElementById('content');
+  const r = {
+    'overview': renderOverview,
+    'listening': renderListening,
+    'reading': renderReading,
+    'writing': renderWriting,
+    'flashcards': renderFlashcards,
+    'vocab-youth': ()=>renderVocabGTA('Youth Matters','👥','blue',["Family & Friendships","Peer Pressure & Role Models","Music & Fashion","Technology & Communication"]),
+    'vocab-health': ()=>renderVocabGTA('Lifestyle, Health & Fitness','💪','green',["Food & Diet","Sport & Exercise","Health Issues","Urban & Rural Life"]),
+    'vocab-environment': ()=>renderVocabGTA('Environment & Travel','🌍','orange',["Tourism & Transport","Natural Disasters & Weather","Climate Change","Energy & Recycling"]),
+    'vocab-education': ()=>renderVocabGTA('Education & Employment','🎓','purple',["Education Systems","Student Life","Volunteering & Internships","Jobs & Unemployment"]),
+    'phrases': renderPhrases,
+    'models': renderModels,
+    'grammar-ref': renderGrammarRef,
+    'errors': renderErrors,
+    'verbs': renderVerbs,
+    'quiz': renderQuiz,
+    'checklist': renderChecklist,
+  };
+  c.innerHTML = `<div class="section active">${(r[currentSection]||renderOverview)()}</div>`;
+  if(currentSection==='flashcards') initFlashcard();
+  if(currentSection==='quiz' && quizQuestions.length===0) generateQuiz();
+}
+
+function renderOverview() {
+  const totalVocab = Object.values(VOCAB).reduce((s,a)=>s+a.length,0);
+  const totalPhrases = Object.values(PHRASES).reduce((s,a)=>s+a.length,0);
+  return `
+  <div class="card">
+    <div class="card-header"><h2>Unit 2: Understanding & Written Response</h2><span class="tag tag-blue">IAS</span></div>
+    <p>2 hours 30 minutes · 90 marks · 70% of IAS / 35% of IAL</p>
+    <div class="stats-bar">
+      <div class="stat"><div class="stat-value">${totalVocab}</div><div class="stat-label">Vocab terms</div></div>
+      <div class="stat"><div class="stat-value">${totalPhrases}</div><div class="stat-label">Phrases</div></div>
+      <div class="stat"><div class="stat-value">20</div><div class="stat-label">Irregular verbs</div></div>
+      <div class="stat"><div class="stat-value">4</div><div class="stat-label">GTAs</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Paper Structure</h3>
+    <table class="vocab-table">
+      <thead><tr><th>Section</th><th>Details</th><th>Marks</th></tr></thead>
+      <tbody>
+        <tr><td>A: Listening</td><td>Authentic German audio, short answers in German</td><td>20</td></tr>
+        <tr><td>B: Reading & Grammar</td><td>Comprehension + gap-fill grammar exercise</td><td>30</td></tr>
+        <tr><td>C: Writing</td><td>240–280 word essay (email or article)</td><td>40</td></tr>
+      </tbody>
+    </table>
+    <div class="tip"><strong>⚡ Key advantage:</strong> You control the pace of the whole exam, including listening. Replay tricky sections as many times as you need.</div>
+  </div>
+  <div class="card">
+    <h3>Time Management</h3>
+    <table class="vocab-table">
+      <thead><tr><th>Section</th><th>Recommended Time</th></tr></thead>
+      <tbody>
+        <tr><td>Section A: Listening</td><td>35–40 minutes (including replays)</td></tr>
+        <tr><td>Section B: Reading & Grammar</td><td>45–50 minutes</td></tr>
+        <tr><td>Section C: Writing</td><td>50–55 minutes (including planning)</td></tr>
+        <tr><td>Final check</td><td>5–10 minutes</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Assessment Objectives</h3>
+    <p><strong style="color:var(--blue)">AO2 — Content & Communication:</strong> Can you understand texts/audio and respond relevantly and coherently?</p>
+    <p style="margin-top:8px"><strong style="color:var(--purple)">AO3 — Quality of Language:</strong> Do you use accurate grammar, varied vocabulary, and complex structures?</p>
+    <div class="tip"><strong>Top band (17–20):</strong> AO2 requires writing that is "entirely coherent" with ideas in a "logical sequence." AO3 requires a "wide range of vocabulary and grammatical structures" with "very few errors."</div>
+  </div>`;
+}
+
+function renderListening() {
+  return `
+  <div class="card">
+    <div class="card-header"><h2>Section A: Listening Strategies</h2><span class="tag tag-blue">20 marks</span></div>
+    <p>You get your own CD and headphones. You can pause, rewind, and replay as much as you want.</p>
+    <h3>Three-Listen Method</h3>
+    <ul>
+      <li><strong>First listen:</strong> Gist only. Identify topic, speakers, overall message. Don't answer yet.</li>
+      <li><strong>Second listen:</strong> Answer questions. Pause after each relevant section to write.</li>
+      <li><strong>Third listen:</strong> Verify answers. Fill gaps.</li>
+    </ul>
+    <div class="tip"><strong>Answers must be in German.</strong> You do NOT need full sentences for short-answer questions — key words and phrases are enough. But ensure grammatical accuracy.</div>
+  </div>
+  <div class="card">
+    <h3>Common Pitfalls</h3>
+    <ul>
+      <li><strong>Similar sounds:</strong> Rat (advice) vs. Rad (wheel); Meer (sea) vs. mehr (more)</li>
+      <li><strong>Missing negatives:</strong> nicht, kein, nie, niemals, weder...noch</li>
+      <li><strong>Numbers:</strong> sechzehn (16) vs. sechzig (60); dreizehn (13) vs. dreißig (30)</li>
+      <li><strong>Qualifiers:</strong> manchmal, selten, häufig, fast, beinahe, kaum</li>
+      <li><strong>Compounds:</strong> Break them down — Umweltverschmutzung = Umwelt + Verschmutzung</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Signpost Words (Signalwörter)</h3>
+    <p style="margin-bottom:12px">Recognising these in audio helps you follow the argument structure:</p>
+    ${vocabTableHTML(VOCAB["Signpost Words"])}
+  </div>`;
+}
+
+function renderReading() {
+  return `
+  <div class="card">
+    <div class="card-header"><h2>Section B: Reading & Grammar</h2><span class="tag tag-green">30 marks</span></div>
+    <h3>Approach</h3>
+    <ul>
+      <li><strong>Step 1:</strong> Skim the questions first — know what to look for.</li>
+      <li><strong>Step 2:</strong> Read for gist — understand the overall topic and argument.</li>
+      <li><strong>Step 3:</strong> Read for detail — underline key info for each question.</li>
+      <li><strong>Step 4:</strong> Answer in German — use your own words where possible.</li>
+    </ul>
+    <div class="tip"><strong>Gap-fill grammar:</strong> Read the WHOLE sentence before deciding. Look for clues: prepositions governing cases, verb endings indicating tense, word order rules.</div>
+  </div>
+  <div class="card">
+    <h3>Grammar Quick-Reference for Gap-Fill</h3>
+    <details class="grammar-box"><summary>Cases — Quick Reference</summary><div class="grammar-content">
+      <code>Nominativ</code> (subject): der/die/das/die — ein/eine/ein<br>
+      <code>Akkusativ</code> (direct object): den/die/das/die — einen/eine/ein<br>
+      <code>Dativ</code> (indirect object): dem/der/dem/den(+n) — einem/einer/einem<br>
+      <code>Genitiv</code> (possession): des(+s)/der/des(+s)/der<br><br>
+      <strong>Akk prepositions:</strong> durch, für, gegen, ohne, um, bis, entlang<br>
+      <strong>Dat prepositions:</strong> aus, bei, mit, nach, seit, von, zu, gegenüber<br>
+      <strong>Dual-case:</strong> an, auf, hinter, in, neben, über, unter, vor, zwischen (Akk=motion, Dat=location)<br>
+      <strong>Gen prepositions:</strong> während, wegen, trotz, außerhalb, innerhalb, statt
+    </div></details>
+    <details class="grammar-box"><summary>Adjective Endings</summary><div class="grammar-content">
+      <strong>After definite article (der/die/das):</strong> Nom = <code>-e</code> (all genders). Akk masc = <code>-en</code>, rest = <code>-e</code>. Dat/Gen = all <code>-en</code>.<br><br>
+      <strong>After indefinite article (ein/eine/ein):</strong> Nom masc = <code>-er</code>, fem = <code>-e</code>, neut = <code>-es</code>. Akk masc = <code>-en</code>. Dat/Gen = all <code>-en</code>.<br><br>
+      <strong>No article:</strong> endings mirror the definite article (guter Wein, gute Milch, gutes Bier).
+    </div></details>
+    <details class="grammar-box"><summary>Word Order Rules</summary><div class="grammar-content">
+      <strong>Main clause:</strong> Verb ALWAYS in position 2 (V2 rule). Subject inverts if another element is first.<br>
+      → <code>Gestern habe ich Tennis gespielt.</code><br><br>
+      <strong>Subordinate clause:</strong> Verb goes to the END.<br>
+      → Conjunctions: weil, dass, obwohl, wenn, als, bevor, nachdem, seitdem, damit, ob, während<br>
+      → <code>Ich glaube, dass Sport sehr wichtig ist.</code><br><br>
+      <strong>Relative clauses:</strong> verb to end, pronoun agrees with antecedent.<br>
+      → <code>Der Film, den ich gesehen habe, war spannend.</code><br><br>
+      <strong>TMP order:</strong> Time – Manner – Place<br>
+      → <code>Ich fahre morgen mit dem Zug nach Berlin.</code>
+    </div></details>
+    <details class="grammar-box"><summary>Tenses</summary><div class="grammar-content">
+      <code>Präsens:</code> ich mache, du machst, er macht, wir machen<br>
+      <code>Perfekt:</code> ich habe gemacht / ich bin gegangen (haben/sein + PP)<br>
+      <code>Präteritum:</code> ich machte, ich ging, ich war, ich hatte<br>
+      <code>Futur I:</code> ich werde machen (werden + infinitive)<br>
+      <code>Plusquamperfekt:</code> ich hatte gemacht / ich war gegangen<br>
+      <code>Konjunktiv II:</code> ich würde machen, ich hätte, ich wäre, ich könnte<br><br>
+      <strong>Modal Präteritum:</strong> konnte, musste, durfte, sollte, wollte, mochte
+    </div></details>
+    <details class="grammar-box"><summary>Passive Voice</summary><div class="grammar-content">
+      <strong>Processual (werden + PP):</strong><br>
+      Präsens: <code>Das Haus wird gebaut.</code><br>
+      Präteritum: <code>Das Haus wurde gebaut.</code><br>
+      Perfekt: <code>Das Haus ist gebaut worden.</code><br><br>
+      <strong>Statal (sein + PP):</strong><br>
+      <code>Das Haus ist geöffnet.</code> (state/result)
+    </div></details>
+    <details class="grammar-box"><summary>Subjunctive & Conditionals</summary><div class="grammar-content">
+      <strong>Konjunktiv II:</strong> würde + inf. (most verbs), or irregular: wäre, hätte, könnte, müsste, dürfte<br><br>
+      <strong>Conditional:</strong> <code>Wenn ich mehr Geld hätte, würde ich nach Deutschland reisen.</code><br><br>
+      <strong>Past conditional:</strong> hätte/wäre + PP<br>
+      <code>Wenn ich das gewusst hätte, wäre ich nicht gekommen.</code>
+    </div></details>
+  </div>`;
+}
+
+function renderWriting() {
+  return `
+  <div class="card">
+    <div class="card-header"><h2>Section C: Writing Guide</h2><span class="tag tag-gold">40 marks</span></div>
+    <p>240–280 word essay in response to a German stimulus with 4 bullet points. Format: email or article. You <strong>must</strong> address ALL four bullet points.</p>
+    <div class="tip"><strong>Sweet spot: 250–270 words.</strong> Going over 280 risks more errors; going under 240 means underdeveloped points.</div>
+  </div>
+  <div class="card">
+    <h3>Essay Structure</h3>
+    <table class="vocab-table">
+      <thead><tr><th>Section</th><th>Content</th></tr></thead>
+      <tbody>
+        <tr><td>Einleitung (2–3 sentences)</td><td>Set the scene. Email: greeting. Article: a hook or general statement.</td></tr>
+        <tr><td>Hauptteil 1</td><td>Bullet points 1 & 2. Develop with examples, opinions, reasons.</td></tr>
+        <tr><td>Hauptteil 2</td><td>Bullet points 3 & 4. Varied connectors. Complex structures.</td></tr>
+        <tr><td>Schluss (2–3 sentences)</td><td>Summarise. Email: sign off. Article: concluding statement.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Email Conventions</h3>
+    ${phraseBlockHTML(PHRASES["Email Conventions"])}
+    <h3>Article Conventions</h3>
+    ${phraseBlockHTML(PHRASES["Article Conventions"])}
+  </div>
+  <div class="card">
+    <h3>What Gets Top Marks (17–20)</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px">
+      <div style="background:var(--accent-dim);border-radius:var(--radius-sm);padding:16px">
+        <strong style="color:var(--accent);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em">AO2: Content</strong>
+        <ul style="margin-top:8px"><li>Ideas in logical sequence</li><li>Entirely coherent</li><li>Confident, fluent, purposeful</li><li>Errors don't impede</li></ul>
+      </div>
+      <div style="background:var(--purple-dim);border-radius:var(--radius-sm);padding:16px">
+        <strong style="color:var(--purple);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em">AO3: Language</strong>
+        <ul style="margin-top:8px"><li>Wide range of vocabulary</li><li>Structures used effectively</li><li>Very good control/accuracy</li><li>Very few errors</li></ul>
+      </div>
+    </div>
+    <div class="tip"><strong>Aim for 3–4 complex structures per essay:</strong> one conditional (Konjunktiv II), one passive, one subordinate clause (obwohl/nachdem/damit), one relative clause.</div>
+  </div>`;
+}
+
+function renderVocabGTA(title, icon, color, categories) {
+  return `<div class="card"><div class="card-header"><h2>${icon} ${title}</h2><span class="tag tag-${color}">GTA</span></div>
+    ${categories.map(cat => `<h3>${cat}</h3>${vocabTableHTML(VOCAB[cat]||[])}`).join('')}
+  </div>`;
+}
+
+function renderFlashcards() {
+  const cats = Object.keys(VOCAB);
+  const items = VOCAB[fcCategory] || [];
+  const total = items.length;
+  return `
+  <div class="card">
+    <div class="card-header"><h2>🃏 Flashcards</h2><span class="tag tag-green">PRACTICE</span></div>
+    <div class="flashcard-controls">
+      <select id="fcCatSelect" onchange="changeFCCategory(this.value)">
+        ${cats.map(c=>`<option value="${c}"${c===fcCategory?' selected':''}>${c} (${VOCAB[c].length})</option>`).join('')}
+      </select>
+      <button class="fc-btn" onclick="shuffleFC()">🔀 Shuffle</button>
+      <button class="fc-btn" onclick="resetFC()">↺ Reset</button>
+      <span class="fc-progress" id="fcProgress">${fcIndex+1} / ${total}</span>
+    </div>
+    <div class="flashcard-container" onclick="flipFC()">
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-face flashcard-front">
+          <span class="fc-label">Deutsch</span>
+          <span class="fc-word" id="fcFront">${items[fcIndex]?items[fcIndex][0]:''}</span>
+          <span class="fc-hint">Click to flip</span>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <span class="fc-label">English</span>
+          <span class="fc-word" id="fcBack">${items[fcIndex]?items[fcIndex][1]:''}</span>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-nav">
+      <button class="btn-prev" onclick="prevFC()">← Prev</button>
+      <button class="btn-dunno" onclick="markFC(false)">Don't know</button>
+      <button class="btn-know" onclick="markFC(true)">Know it ✓</button>
+    </div>
+    <div id="fcStats" style="text-align:center;margin-top:16px;font-size:.85rem;color:var(--text3)"></div>
+  </div>`;
+}
+
+function initFlashcard() { updateFC(); }
+function changeFCCategory(cat) { fcCategory=cat; fcIndex=0; fcFlipped=false; fcKnown=new Set(); renderSection(); }
+function shuffleFC() {
+  const arr=VOCAB[fcCategory]; for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+  fcIndex=0;fcFlipped=false;updateFC();
+}
+function resetFC() { fcIndex=0;fcFlipped=false;fcKnown=new Set();updateFC(); }
+function flipFC() { fcFlipped=!fcFlipped; document.getElementById('flashcard').classList.toggle('flipped',fcFlipped); }
+function prevFC() { if(fcIndex>0){fcIndex--;fcFlipped=false;updateFC();} }
+function markFC(known) {
+  if(known) fcKnown.add(fcIndex);
+  else fcKnown.delete(fcIndex);
+  const items=VOCAB[fcCategory];
+  if(fcIndex<items.length-1){fcIndex++;fcFlipped=false;updateFC();}
+  else { document.getElementById('fcStats').innerHTML=`<span style="color:var(--accent)">Done! You know ${fcKnown.size}/${items.length} terms.</span>`; }
+}
+function updateFC() {
+  const items=VOCAB[fcCategory]||[];
+  const el=document.getElementById('flashcard');
+  if(el){el.classList.remove('flipped');fcFlipped=false;}
+  const fr=document.getElementById('fcFront'); if(fr)fr.textContent=items[fcIndex]?items[fcIndex][0]:'';
+  const bk=document.getElementById('fcBack'); if(bk)bk.textContent=items[fcIndex]?items[fcIndex][1]:'';
+  const pr=document.getElementById('fcProgress'); if(pr)pr.textContent=`${fcIndex+1} / ${items.length}`;
+  const st=document.getElementById('fcStats'); if(st)st.innerHTML=`Known: ${fcKnown.size}/${items.length}`;
+}
+
+function renderPhrases() {
+  const groups = ["Opinions","Linking & Structuring","Cause & Effect","Complex Structures"];
+  return `<div class="card"><div class="card-header"><h2>⭐ High-Scoring Phrases</h2></div>
+    <p>Use these naturally in Section C to demonstrate the "wide range" required for top marks.</p>
+    ${groups.map(g=>`<h3>${g}</h3>${phraseBlockHTML(PHRASES[g])}`).join('')}
+  </div>`;
+}
+
+function renderModels() {
+  const groups = ["Model: Youth","Model: Health","Model: Environment","Model: Education"];
+  const titles = {"Model: Youth":"Youth Matters","Model: Health":"Lifestyle & Health","Model: Environment":"Environment & Travel","Model: Education":"Education & Employment"};
+  return `<div class="card"><div class="card-header"><h2>📝 Model Sentences</h2></div>
+    <p>These demonstrate how to combine topic vocabulary with complex grammar. Learn, adapt, and deploy.</p>
+    ${groups.map(g=>`<h3>${titles[g]}</h3>${phraseBlockHTML(PHRASES[g])}`).join('')}
+  </div>`;
+}
+
+function renderGrammarRef() {
+  return renderReading(); // reuse
+}
+
+function renderErrors() {
+  return `<div class="card"><div class="card-header"><h2>⚠️ Top Grammar Errors to Avoid</h2></div>
+    ${GRAMMAR_ERRORS.map(e=>`<div class="error-box">
+      <div class="error-header">${e.title}</div>
+      <div class="error-body">
+        <div class="error-wrong">${e.wrong}</div>
+        <div class="error-right">${e.right}</div>
+        <div class="error-why">${e.why}</div>
+      </div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function renderVerbs() {
+  return `<div class="card"><div class="card-header"><h2>🔄 Essential Irregular Verbs</h2></div>
+    <p>Know these forms cold — they appear constantly in reading and listening.</p>
+    <table class="vocab-table">
+      <thead><tr><th>Infinitiv</th><th>Präsens (er)</th><th>Präteritum</th><th>Perfekt</th><th>Konj. II</th></tr></thead>
+      <tbody>${IRREGULAR_VERBS.map(v=>`<tr>${v.map((c,i)=>`<td${i===0?' style="font-weight:600"':''}>${c}</td>`).join('')}</tr>`).join('')}</tbody>
+    </table>
+  </div>`;
+}
+
+// ── QUIZ ──
+function generateQuiz() {
+  const allPairs = Object.values(VOCAB).flat();
+  const shuffled = [...allPairs].sort(()=>Math.random()-.5);
+  quizQuestions = shuffled.slice(0,15).map(([de,en])=>{
+    const wrongs = allPairs.filter(p=>p[1]!==en).sort(()=>Math.random()-.5).slice(0,3).map(p=>p[1]);
+    const options = [...wrongs,en].sort(()=>Math.random()-.5);
+    return {de,en,options};
+  });
+  quizIndex=0; quizScore=0; quizAnswered=false;
+  renderSection();
+}
+
+function renderQuiz() {
+  if(quizQuestions.length===0) return `<div class="card"><p>Loading quiz...</p></div>`;
+  if(quizIndex>=quizQuestions.length) {
+    const pct = Math.round(quizScore/quizQuestions.length*100);
+    return `<div class="card"><div class="card-header"><h2>🧪 Quiz Complete!</h2></div>
+      <div class="quiz-score">Score: ${quizScore}/${quizQuestions.length} (${pct}%)</div>
+      <div style="background:var(--bg3);border-radius:var(--radius-sm);height:24px;margin:16px 0;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${pct>=80?'var(--accent)':pct>=50?'var(--gold)':'var(--red)'};border-radius:var(--radius-sm);transition:width .5s"></div>
+      </div>
+      <p>${pct>=80?'Excellent! You know this vocab well.':pct>=50?'Good progress — keep reviewing the ones you missed.':'Keep practising! Go through the flashcards and try again.'}</p>
+      <button class="fc-btn-accent" style="margin-top:16px;padding:10px 24px;border:none;border-radius:var(--radius-sm);font:600 .9rem var(--font-body);cursor:pointer" onclick="generateQuiz()">New Quiz →</button>
+    </div>`;
+  }
+  const q = quizQuestions[quizIndex];
+  return `<div class="card"><div class="card-header"><h2>🧪 Vocab Quiz</h2><span class="tag tag-green">${quizIndex+1}/${quizQuestions.length}</span></div>
+    <div class="quiz-q">What does "<span style="color:var(--accent)">${q.de}</span>" mean?</div>
+    ${q.options.map((o,i)=>`<button class="quiz-option" id="qo${i}" onclick="answerQuiz(${i},'${o.replace(/'/g,"\\'")}')">${o}</button>`).join('')}
+    <div id="quizFeedback"></div>
+  </div>`;
+}
+
+function answerQuiz(idx, answer) {
+  if(quizAnswered) return;
+  quizAnswered = true;
+  const q = quizQuestions[quizIndex];
+  const correct = answer === q.en;
+  if(correct) quizScore++;
+  document.querySelectorAll('.quiz-option').forEach((btn,i)=>{
+    btn.classList.add('disabled');
+    const val = btn.textContent;
+    if(val===q.en) btn.classList.add('correct');
+    else if(i===idx) btn.classList.add('wrong');
+  });
+  document.getElementById('quizFeedback').innerHTML = correct
+    ? '<p style="color:var(--accent);margin-top:12px;font-weight:600">✓ Correct!</p>'
+    : `<p style="color:var(--red);margin-top:12px">✗ The answer was: <strong style="color:var(--accent)">${q.en}</strong></p>`;
+  setTimeout(()=>{ quizIndex++; quizAnswered=false; renderSection(); }, correct?1200:2200);
+}
+
+function renderChecklist() {
+  const items = [
+    {cat:"Before the Exam",items:[
+      "Review all four GTAs — can you discuss each subtopic in German?",
+      "Practise writing a 240–280 word essay in under 50 minutes",
+      "Revise irregular verbs, adjective endings, and case system",
+      "Learn 5 advanced connectors and 5 opinion phrases by heart",
+      "Practise listening to authentic German (DW Nachrichten, podcasts)"
+    ]},
+    {cat:"During Section C",items:[
+      "Spend 5 minutes planning: allocate bullet points to paragraphs",
+      "Include: Konjunktiv II, passive, relative clause, subordinate clause",
+      "Use a variety of tenses (present, past, future, conditional)",
+      "Address ALL FOUR bullet points",
+      "Aim for 250–270 words (sweet spot)",
+      "Check verb positions, adjective endings, cases after prepositions",
+      "Check umlauts, capitalised nouns, compound nouns"
+    ]}
+  ];
+  return `<div class="card"><div class="card-header"><h2>✅ Pre-Exam Checklist</h2></div>
+    ${items.map(s=>`<h3>${s.cat}</h3>${s.items.map((it,i)=>`
+      <label style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;cursor:pointer;font-size:.9rem;color:var(--text2)">
+        <input type="checkbox" style="margin-top:3px;accent-color:var(--accent)"> ${it}
+      </label>`).join('')}`).join('')}
+  </div>
+  <div class="card">
+    <h3 style="color:var(--accent)">What Examiners Love ✓</h3>
+    <ul>
+      <li>Varied sentence openings (don't always start with Ich...)</li>
+      <li>Complex opinions with justification (nicht nur...sondern auch)</li>
+      <li>Topic-specific vocabulary (not generic words)</li>
+      <li>Conditional sentences showing nuance</li>
+      <li>Passive constructions for a formal register</li>
+      <li>Coherent structure with clear paragraphing</li>
+    </ul>
+    <h3 style="color:var(--red);margin-top:20px">What Examiners Penalise ✗</h3>
+    <ul>
+      <li>Not addressing all bullet points</li>
+      <li>Exceeding word limit (errors accumulate)</li>
+      <li>Repetitive vocabulary (gut/schlecht only)</li>
+      <li>Basic sentence structures only (no subordination)</li>
+      <li>Anglicisms and direct translations from English</li>
+      <li>Inconsistent register (mixing du/Sie)</li>
+    </ul>
+  </div>`;
+}
+
+// ── SEARCH ──
+function handleSearch(query) {
+  if(!query.trim()) { renderSection(); return; }
+  const q = query.toLowerCase();
+  const results = [];
+  for(const [cat, items] of Object.entries({...VOCAB,...PHRASES})) {
+    for(const [de,en] of items) {
+      if(de.toLowerCase().includes(q)||en.toLowerCase().includes(q)) results.push({cat,de,en});
+    }
+  }
+  const c = document.getElementById('content');
+  if(results.length===0) {
+    c.innerHTML='<div class="section active"><div class="card"><p>No results for "'+query+'"</p></div></div>';
+    return;
+  }
+  c.innerHTML=`<div class="section active"><div class="card"><div class="card-header"><h2>Search: "${query}"</h2><span class="tag tag-blue">${results.length} results</span></div>
+    <table class="vocab-table"><thead><tr><th>Deutsch</th><th>English</th><th>Category</th></tr></thead>
+    <tbody>${results.map(r=>`<tr><td>${r.de}</td><td>${r.en}</td><td><span style="font-size:.75rem;color:var(--text3)">${r.cat}</span></td></tr>`).join('')}</tbody></table>
+  </div></div>`;
+}
+
+// ── INIT ──
+buildSidebar();
+renderSection();
+</script>
+</body>
+</html>
